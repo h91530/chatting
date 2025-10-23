@@ -1,14 +1,20 @@
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import type { GetServerSideProps } from 'next'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
-import { supabase } from '@/lib/supabase'
 
 interface Message {
   id: string
   sender_id: string
   content: string
   created_at: string
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  }
 }
 
 export default function ChatDetailPage() {
@@ -21,7 +27,7 @@ export default function ChatDetailPage() {
   const [sending, setSending] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  // 메시지 로드 및 실시간 구독
+  // 메시지 로드 및 폴링
   useEffect(() => {
     if (!conversationId || !user) return
 
@@ -40,18 +46,11 @@ export default function ChatDetailPage() {
     // 초기 메시지 로드
     loadMessages()
 
-    // Realtime 구독
-    const subscription = supabase
-      .from(`messages:conversation_id=eq.${conversationId}`)
-      .on('*', (payload) => {
-        if (payload.eventType === 'INSERT') {
-          setMessages((prev) => [...prev, payload.new as Message])
-        }
-      })
-      .subscribe()
+    // 2초마다 메시지 새로고침 (폴링)
+    const pollInterval = setInterval(loadMessages, 2000)
 
     return () => {
-      subscription.unsubscribe()
+      clearInterval(pollInterval)
     }
   }, [conversationId, user])
 

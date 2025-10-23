@@ -52,18 +52,8 @@ export default function Dashboard() {
             <p className="text-gray-700 mb-2">
               <span className="font-semibold">로그인된 이메일:</span> {user.email}
             </p>
-            <p className="text-gray-700 mb-2">
-              <span className="font-semibold">사용자 ID:</span> {user.id}
-            </p>
             <p className="text-gray-700">
-              <span className="font-semibold">가입일:</span>{' '}
-              {new Date(user.created_at || '').toLocaleDateString('ko-KR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-              })}
+              <span className="font-semibold">사용자 ID:</span> {user.id}
             </p>
           </div>
 
