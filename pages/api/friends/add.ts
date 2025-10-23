@@ -44,9 +44,34 @@ export default async function handler(
       return res.status(500).json({ success: false, message: error.message })
     }
 
+    // 친구 추가 후 대화 자동 생성
+    const { data: existingConv } = await supabase
+      .from('conversations')
+      .select('*')
+      .or(
+        `and(user1_id.eq.${decoded.id},user2_id.eq.${friendId}),and(user1_id.eq.${friendId},user2_id.eq.${decoded.id})`
+      )
+      .single()
+
+    let conversation = existingConv
+    if (!existingConv) {
+      const { data: newConv } = await supabase
+        .from('conversations')
+        .insert([
+          {
+            user1_id: decoded.id,
+            user2_id: friendId,
+          },
+        ])
+        .select()
+        .single()
+      conversation = newConv
+    }
+
     return res.status(201).json({
       success: true,
       friendship: data,
+      conversation: conversation,
     })
   } catch (error) {
     console.error('Add friend error:', error)
