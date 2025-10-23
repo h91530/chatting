@@ -1,6 +1,13 @@
 import Link from 'next/link'
+import type { GetServerSideProps } from 'next'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { useAuth } from '@/hooks/useAuth'
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  }
+}
 
 export default function Dashboard() {
   const { user, loading } = useProtectedRoute()

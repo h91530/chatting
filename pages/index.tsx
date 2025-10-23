@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import type { GetServerSideProps } from 'next'
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  }
+}
 
 interface User {
   id: string

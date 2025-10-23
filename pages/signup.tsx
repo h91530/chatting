@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import type { GetServerSideProps } from 'next'
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  }
+}
 
 export default function SignUp() {
   const router = useRouter()

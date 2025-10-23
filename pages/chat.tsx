@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import type { GetServerSideProps } from 'next'
 import { useProtectedRoute } from '@/hooks/useProtectedRoute'
 import { useAuth } from '@/hooks/useAuth'
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  }
+}
 
 interface Conversation {
   id: string

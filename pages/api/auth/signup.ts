@@ -36,11 +36,16 @@ export default async function handler(
 
   try {
     // 이메일 중복 확인
-    const { data: existingUser } = await supabase
+    const { data: existingUser, error: selectError } = await supabase
       .from('users')
       .select('id')
       .eq('email', email)
       .single()
+
+    if (selectError && selectError.code !== 'PGRST116') {
+      console.error('Select error:', selectError)
+      return res.status(500).json({ success: false, message: '이메일 확인 실패' })
+    }
 
     if (existingUser) {
       return res.status(409).json({ success: false, message: '이미 등록된 이메일입니다' })
@@ -61,7 +66,13 @@ export default async function handler(
       .select('id, email, created_at')
       .single()
 
-    if (error || !newUser) {
+    if (error) {
+      console.error('Insert user error:', error)
+      return res.status(500).json({ success: false, message: `회원가입 실패: ${error.message}` })
+    }
+
+    if (!newUser) {
+      console.error('No user returned after insert')
       return res.status(500).json({ success: false, message: '회원가입 실패' })
     }
 

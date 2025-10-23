@@ -1,4 +1,11 @@
 import { useEffect, useState } from 'react'
+import type { GetServerSideProps } from 'next'
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  }
+}
 
 export default function TestPage() {
   const [logs, setLogs] = useState<string[]>([])
