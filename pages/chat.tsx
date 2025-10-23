@@ -107,11 +107,19 @@ export default function ChatPage() {
         alert('친구 추가 완료!')
         setSearchQuery('')
         setSearchResults([])
+
         // 친구 목록 새로고침
         const listResponse = await fetch('/api/friends/list')
         const listData = await listResponse.json()
         if (listData.success) {
           setFriends(listData.friends)
+        }
+
+        // 대화 목록 새로고침
+        const convResponse = await fetch('/api/conversations/get')
+        const convData = await convResponse.json()
+        if (convData.success) {
+          setConversations(convData.conversations)
         }
       } else {
         alert(data.message)
