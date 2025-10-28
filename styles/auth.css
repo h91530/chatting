@@ -1,0 +1,316 @@
+/* ===== 인증 페이지 컨테이너 ===== */
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--gray-50);
+}
+
+/* ===== 로고 섹션 ===== */
+.auth-logo-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+  position: relative;
+}
+
+.auth-logo-content {
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.auth-logo-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-lg);
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--gray-600) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.auth-logo-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+}
+
+.auth-logo-subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-600);
+  font-weight: 400;
+}
+
+/* ===== 폼 섹션 ===== */
+.auth-form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+  background: var(--white);
+}
+
+.auth-form-wrapper {
+  width: 100%;
+  max-width: 400px;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+  animation: scaleIn 0.4s ease-out;
+}
+
+.auth-form-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  text-align: center;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+.auth-form-subtitle {
+  font-size: 1rem;
+  color: var(--gray-600);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+/* ===== 폼 그룹 ===== */
+.auth-form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.auth-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: var(--space-xs);
+  color: var(--gray-700);
+}
+
+.auth-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  background: var(--white);
+  color: var(--gray-900);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.auth-input::placeholder {
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* ===== 버튼 그룹 ===== */
+.auth-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.auth-button {
+  width: 100%;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-family: inherit;
+}
+
+.auth-button-primary {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-button-primary:hover {
+  background: var(--primary-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.auth-button-primary:active {
+  transform: translateY(0);
+}
+
+.auth-button-primary:disabled {
+  background: var(--gray-400);
+  color: var(--white);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.auth-button-secondary {
+  background: var(--white);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-button-secondary:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+  transform: translateY(-1px);
+}
+
+.auth-button-secondary:active {
+  transform: translateY(0);
+}
+
+/* ===== 구분선 ===== */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: var(--space-xl) 0;
+  color: var(--gray-400);
+  font-size: 14px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-300);
+}
+
+.auth-divider-text {
+  padding: 0 var(--space-md);
+  font-weight: 500;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  color: var(--gray-500);
+}
+
+/* ===== 링크 텍스트 ===== */
+.auth-link-text {
+  text-align: center;
+  font-size: 14px;
+  color: var(--gray-600);
+  margin-top: var(--space-lg);
+}
+
+.auth-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.auth-link:hover {
+  color: var(--accent-light);
+}
+
+/* ===== 푸터 ===== */
+.auth-footer {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  text-align: center;
+  font-size: 13px;
+  color: var(--gray-400);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* ===== 메시지 ===== */
+.auth-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+}
+
+.auth-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-logo-section {
+    padding: var(--space-xl) var(--space-lg);
+    min-height: 30vh;
+  }
+
+  .auth-form-section {
+    padding: var(--space-lg);
+  }
+
+  .auth-form-wrapper {
+    padding: var(--space-xl) var(--space-lg);
+    margin: 0 var(--space-md);
+  }
+
+  .auth-logo-text {
+    font-size: 2rem;
+  }
+
+  .auth-logo-icon {
+    font-size: 3rem;
+  }
+
+  .auth-form-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form-wrapper {
+    padding: var(--space-lg) var(--space-md);
+    margin: 0 var(--space-sm);
+  }
+
+  .auth-logo-text {
+    font-size: 1.75rem;
+  }
+
+  .auth-logo-icon {
+    font-size: 2.5rem;
+  }
+
+  .auth-form-title {
+    font-size: 1.25rem;
+  }
+
+  .auth-logo-subtitle {
+    font-size: 1rem;
+  }
+}

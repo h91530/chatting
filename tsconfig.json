@@ -18,12 +18,17 @@
     "esModuleInterop": true,
     "paths": {
       "@/*": [
-        "./*"
+        "./app/*"
       ]
     },
     "allowJs": true,
     "incremental": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "**/*.ts",
